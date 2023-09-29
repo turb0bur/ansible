@@ -23,8 +23,8 @@
         state: installed
 
     - name: Create Mysql configuration file
-      copy:
-        src: files/my.cnf
+      template:
+        src: templates/my.cnf.j2
         dest: /etc/my.cnf
 
     - name: Start MariaDB Service
@@ -60,8 +60,8 @@
         state: present
 
     - name: Move db-load-script to db host
-      copy:
-        src: files/db-load-script.sql
+      template:
+        src: templates/db-load-script.sql.j2
         dest: /tmp/db-load-script.sql
 
     - name: Load Inventory Data
@@ -117,6 +117,6 @@
         force: true
 
     - name: Creates the index.php file
-      copy:
-        src: files/index.php
+      template:
+        src: templates/index.php.j2
         dest: /var/www/html/index.php
