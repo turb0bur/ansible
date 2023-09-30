@@ -1,0 +1,49 @@
+- name: Install httpd and php
+  yum:
+    name:
+      - httpd
+      - php
+      - php-mysql
+    state: installed
+
+- name: Install web role specific dependencies
+  yum:
+    name: git
+    state: installed
+
+- name: Start firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: insert firewalld rule for httpd
+  firewalld:
+    port: "{{ httpd_port }}/tcp"
+    state: enabled
+    permanent: true
+    immediate: true
+
+- name: Set index.php as the default page
+  tags: "Set index.php as the default page"
+  replace:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: 'DirectoryIndex index.html'
+    replace: 'DirectoryIndex index.php'
+
+- name: Apache service start
+  service:
+    name: httpd
+    state: started
+    enabled: true
+
+- name: Copy the code from repository
+  git:
+    repo: "{{ repository }}"
+    dest: /var/www/html/
+    force: true
+
+- name: Creates the index.php file
+  template:
+    src: templates/index.php.j2
+    dest: /var/www/html/index.php
