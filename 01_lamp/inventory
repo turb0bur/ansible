@@ -1,5 +1,5 @@
 [db_servers]
-lamp-db ansible_host=${DB_HOST} ansible_ssh_private_key_file=${DB_SSH_PRIVATE_KEY_FILE} ansible_user=${DB_HOST_USER} mysqlservice=${DB_SERVICE} mysql_port=${DB_PORT} dbname=${DB_NAME} dbuser=${DB_USER} dbpassword=${DB_PASSWORD}
+lamp-db
 
 [web_servers]
-lamp-web ansible_host=${WEB_HOST} ansible_ssh_private_key_file=${WEB_SSH_PRIVATE_KEY_FILE} ansible_user=${WEB_HOST_USER} httpd_port=${WEB_PORT} repository=${WEB_REPOSITORY}
+lamp-web

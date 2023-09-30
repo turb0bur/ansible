@@ -1,0 +1,5 @@
+mysqlservice: "{{ lookup('env',DB_SERVICE') }}"
+mysql_port: "{{ lookup('env',DB_PORT') }}"
+dbname: "{{ lookup('env',DB_NAME') }}"
+dbuser: "{{ lookup('env',DB_USER') }}"
+dbpassword: "{{ lookup('env',DB_PASSWORD') }}"
