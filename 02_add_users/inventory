@@ -1,0 +1,1 @@
+node00 ansible_host=${NODE_HOST} ansible_user=${NODE_USER} ansible_ssh_pass=${NODE_PASSWORD}
