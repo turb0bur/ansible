@@ -2,20 +2,25 @@
 - name: Install common packages
   hosts: all
   become: true
-  tasks:
-    -  include_tasks: tasks/common.yml
+#  tasks:
+#    -  include_tasks: tasks/common.yml
+  roles:
+    - common
 
 - name: Install and Configure Database
   hosts: lamp-db
   gather_facts: true
   become: true
-  tasks:
-    - include_tasks: tasks/db.yml
+#  tasks:
+#    - include_tasks: tasks/db.yml
+  roles:
+    - mysql
 
 - name: Install and Configure Web Server
   hosts: lamp-web
   gather_facts: true
   become: true
-  tasks:
-    - include_tasks: tasks/web.yml
-      
+#  tasks:
+#    - include_tasks: tasks/web.yml
+  roles:
+    - httpd-php
